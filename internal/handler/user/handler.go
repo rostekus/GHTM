@@ -8,10 +8,12 @@ import (
 	"github.com/rostekus/ghtm/internal/app/service/dto"
 	"github.com/rostekus/ghtm/internal/app/service/ports/output"
 	handler "github.com/rostekus/ghtm/internal/handler/utils"
+	"github.com/rostekus/ghtm/internal/token"
 )
 
 type Handler struct {
-	Service output.App
+	Service    output.App
+	tokenMaker token.Maker
 }
 
 func (h *Handler) RegisterUserApi(c echo.Context) error {
@@ -27,7 +29,7 @@ func (h *Handler) RegisterUserApi(c echo.Context) error {
 		Email:    userRegisterRequest.Email,
 		Password: userRegisterRequest.Password,
 	}
-	u, err := h.Service.CreateUser(user)
+	u, err := h.Service.CreateUser(c.Request().Context(), user)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, handler.ErrorResponse{Message: "cannot parse the body"})
 		return err
@@ -51,8 +53,7 @@ func (h *Handler) LoginUserApi(c echo.Context) error {
 		Email:    userLoginRequest.Email,
 		Password: userLoginRequest.Password,
 	}
-
-	user, err = h.Service.GetUser(user)
+	user, err = h.Service.GetUser(c.Request().Context(), user)
 
 	if err != nil {
 		http.Error(c.Response(), err.Error(), http.StatusUnauthorized)
