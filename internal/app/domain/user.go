@@ -11,6 +11,7 @@ type User struct {
 	UpdatedAt time.Time
 	Username  string
 	Email     string
+	Role      string
 	Password  string
 	Id        uuid.UUID
 }
