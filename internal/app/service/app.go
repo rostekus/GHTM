@@ -2,6 +2,7 @@ package service
 
 import (
 	"github.com/rostekus/ghtm/internal/app/service/dto"
+	"github.com/rostekus/ghtm/internal/app/service/mapper"
 	"github.com/rostekus/ghtm/internal/app/service/ports/input"
 )
 
@@ -15,10 +16,14 @@ func NewApp(db input.Repository) (*app, error) {
 	}, nil
 }
 
-func (a *app) CreateUser(dto.UserDTO) (dto.UserDTO, error) {
-	return dto.UserDTO{}, nil
+func (a *app) CreateUser(u dto.UserDTO) (dto.UserDTO, error) {
+	user := mapper.UserDTOtoUser(u)
+	userDTO, err := a.db.CreateUser(user)
+	return mapper.UsertoUserDTO(userDTO), err
 }
 
-func (a *app) GetUser(dto.UserDTO) (dto.UserDTO, error) {
-	return dto.UserDTO{}, nil
+func (a *app) GetUser(u dto.UserDTO) (dto.UserDTO, error) {
+	user := mapper.UserDTOtoUser(u)
+	userDTO, err := a.db.GetUser(user)
+	return mapper.UsertoUserDTO(userDTO), err
 }
