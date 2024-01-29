@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"context"
 	"errors"
 	"sync"
 
@@ -22,7 +23,7 @@ func NewInMemoryUserRepository() *InMemoryUserRepository {
 }
 
 // CreateUser adds a new user to the repository.
-func (r *InMemoryUserRepository) CreateUser(user domain.User) (domain.User, error) {
+func (r *InMemoryUserRepository) CreateUser(c context.Context, user domain.User) (domain.User, error) {
 	r.mu.Lock()
 	defer r.mu.Unlock()
 
@@ -35,7 +36,7 @@ func (r *InMemoryUserRepository) CreateUser(user domain.User) (domain.User, erro
 }
 
 // GetUserByID retrieves a user from the repository by ID.
-func (r *InMemoryUserRepository) GetUser(user domain.User) (domain.User, error) {
+func (r *InMemoryUserRepository) GetUser(c context.Context, user domain.User) (domain.User, error) {
 	r.mu.RLock()
 	defer r.mu.RUnlock()
 
