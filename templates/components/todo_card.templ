@@ -1,0 +1,9 @@
+package components
+
+import "github.com/rostekus/ghtm/internal/app/domain"
+
+templ TodoCard(todo domain.Todo) {
+	<div>
+		{ string(todo.Title) }
+	</div>
+}
