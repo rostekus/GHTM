@@ -2,7 +2,6 @@ package handler
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
@@ -57,7 +56,6 @@ func (h *Handler) LoginUserApi(c echo.Context) error {
 		Email:    userLoginRequest.Email,
 		Password: userLoginRequest.Password,
 	}
-	fmt.Println("user", user)
 	user, err = h.Service.GetUser(c.Request().Context(), user)
 
 	if err != nil {
