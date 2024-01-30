@@ -8,13 +8,11 @@ import (
 	"github.com/rostekus/ghtm/internal/app/service/dto"
 	"github.com/rostekus/ghtm/internal/app/service/ports/output"
 	handler "github.com/rostekus/ghtm/internal/handler/utils"
-	"github.com/rostekus/ghtm/internal/token"
 	"github.com/rs/zerolog/log"
 )
 
 type Handler struct {
-	Service    output.App
-	tokenMaker token.Maker
+	Service output.App
 }
 
 func (h *Handler) RegisterUserApi(c echo.Context) error {
