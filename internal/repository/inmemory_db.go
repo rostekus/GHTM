@@ -5,7 +5,6 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/google/uuid"
 	"github.com/rostekus/ghtm/internal/app/domain"
 )
 
@@ -30,7 +29,7 @@ func (r *InMemoryUserRepository) CreateUser(c context.Context, user domain.User)
 	if _, exists := r.users[user.Email]; exists {
 		return domain.User{}, errors.New("user already exists")
 	}
-	user.Id, _ = uuid.NewUUID()
+	user.Id = 1
 	r.users[user.Email] = user
 	return user, nil
 }
