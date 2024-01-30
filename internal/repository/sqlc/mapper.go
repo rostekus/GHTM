@@ -1,4 +1,4 @@
-package db
+package sqlc
 
 import (
 	"github.com/rostekus/ghtm/internal/app/domain"

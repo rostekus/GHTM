@@ -1,4 +1,4 @@
-package db
+package sqlc
 
 import (
 	"context"
@@ -23,7 +23,7 @@ func TestMain(m *testing.M) {
 	dbName := "users"
 	dbUser := "user"
 	dbPassword := "password"
-	migrationURL := "file://../migrations"
+	migrationURL := "file://../../../db/migrations"
 
 	postgresContainer, err := postgres.RunContainer(ctx,
 		testcontainers.WithImage("docker.io/postgres:15.2-alpine"),
