@@ -2,8 +2,6 @@ package dto
 
 import (
 	"time"
-
-	"github.com/google/uuid"
 )
 
 type UserDTO struct {
@@ -12,5 +10,5 @@ type UserDTO struct {
 	Username  string    `json:"username"`
 	Email     string    `json:"email"`
 	Password  string    `json:"-"`
-	Id        uuid.UUID `json:"id"`
+	Id        int32     `json:"id"`
 }

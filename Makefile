@@ -17,6 +17,9 @@ templ: css
 format:
 	templ fmt .
 
+run_postgres:
+	docker restart postgresql 
+
 postgres:
 	docker run -d --name postgresql -e POSTGRES_PASSWORD=password -e POSTGRES_DB=mydatabase -p 5432:5432 postgres:latest
 
