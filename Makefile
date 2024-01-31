@@ -37,3 +37,7 @@ test:
 
 new_migration:
 	migrate create -ext sql -dir db/migrations -seq $(name)
+
+mock:
+	mockgen --destination internal/repository/sqlc/mock/store.go  github.com/rostekus/ghtm/internal/repository/sqlc Store
+	mockgen --destination internal/app/service/ports/output/mock/app.go  github.com/rostekus/ghtm/internal/app/service/ports/output App
