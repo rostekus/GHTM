@@ -3,7 +3,7 @@
 //   sqlc v1.25.0
 // source: user.sql
 
-package db
+package sqlc
 
 import (
 	"context"
@@ -49,7 +49,7 @@ func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, e
 
 const getUserByEmail = `-- name: GetUserByEmail :one
 SELECT id, created_at, updated_at, username, email, role, password FROM users
-WHERE email = $1
+WHERE email = $1 LIMIT 1
 `
 
 func (q *Queries) GetUserByEmail(ctx context.Context, email string) (User, error) {

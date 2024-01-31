@@ -6,9 +6,9 @@ import (
 
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/rostekus/ghtm/config"
-	db "github.com/rostekus/ghtm/db/sqlc"
 	"github.com/rostekus/ghtm/internal/app/service"
 	handler "github.com/rostekus/ghtm/internal/handler/user"
+	db "github.com/rostekus/ghtm/internal/repository/sqlc"
 	"github.com/rostekus/ghtm/internal/server"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
